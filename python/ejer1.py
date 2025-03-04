@@ -1,46 +1,39 @@
-import matplotlib.pyplot as plt
+from itertools import filterfalse
 
 
-class Linea:
-    def __init__(self, p1, p2):
-        self.p1 = p1
-        self.p2 = p2
-
-    def __str__(self):
-        return f'Linea de {self.p1} a {self.p2}'
-
-    def dibujaLinea(self):
-        print(f"Dibujando línea desde {self.p1} hasta {self.p2}")  # Para depuración
-
-        # Crear figura
-        plt.figure(figsize=(6, 6))
-
-        # Dibujar la línea con marcadores en los puntos
-        plt.plot([self.p1[0], self.p2[0]], [self.p1[1], self.p2[1]], 'bo-', label="Línea")
-
-        # Configurar ejes
-        plt.xlim(min(self.p1[0], self.p2[0]) - 2, max(self.p1[0], self.p2[0]) + 2)
-        plt.ylim(min(self.p1[1], self.p2[1]) - 2, max(self.p1[1], self.p2[1]) + 2)
-
-        # Agregar etiquetas y grid
-        plt.xlabel("Eje X")
-        plt.ylabel("Eje Y")
-        plt.title("Gráfico de Línea")
-        plt.legend()
-        plt.grid(True)
-
-        # Mostrar gráfico
-        plt.show(block=True)  # Asegura que la ventana no se cierre inmediatamente
-
-
-# Prueba con datos
-p1 = (0, 0)
-p2 = (5, 7)
-linea = Linea(p1, p2)
-print(linea)
-linea.dibujaLinea()
-
-
+class Pila:
+    def __init__(self,n):
+        self.__arreglo=[None]*(n+1)
+        self.__n=n
+        self.__top=0
+    def push(self,e):
+         self.__top += 1
+         self.__arreglo[self.__top]=e
+         print(e)
+    def pop(self):
+        e=self.__arreglo[self.__top]
+        self.__top=self.__top-1
+        return e
+    def peek(self):
+        return self.__arreglo[self.__top]
+    def  isEmpty(self):
+        if  self.__top==0:
+            return True
+        else:
+            return False
+    def isFull(self):
+        if self.__top==self.__n:
+            return True
+        else:
+            return False
+pila = Pila(6)
+pila.push(10)
+pila.push(20)
+pila.push(30)
+print("eliminado",pila.pop())
+print("ultimo elemento:",pila.peek())
+print("¿esta vacia?",pila.isEmpty())
+print("esta llena",pila.isFull())
 
 
 
